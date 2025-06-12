@@ -1,18 +1,23 @@
 import dotenv from "dotenv";
 
-import express from "express";
+import { app } from "./app.js";
 import connectDB from "./db/dbConnect.js";
 const port = process.env.PORT;
 // console.log(`${process.env.MONGODB_URI}`);
-const app = express();
+
 dotenv.config({
   path: "./.env",
 });
-connectDB();
-
-app.listen(port, () => {
-  console.log(`App is listening at: http://localhost:${port}`);
-});
+//@ async-await gives a promise
+connectDB()
+  .then(() => {
+    app.listen(port || 8000, () => {
+      console.log(`App is listening at: http://localhost:${port}`);
+    });
+  })
+  .catch((err) => {
+    console.log("MongoDB connection failed!!!");
+  });
 
 app.get("/", (req, res) => {
   res.send("You are at Root and Your server is up and running");
