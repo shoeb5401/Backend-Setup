@@ -15,6 +15,7 @@ app.use(
     limit: "32kb",
   })
 );
+
 // For url encoding
 app.use(
   express.urlencoded({
@@ -24,6 +25,16 @@ app.use(
 );
 // For file handling
 app.use(express.static("./public"));
+
 // For parsing/handling the cookies
 app.use(cookieParser());
+
+//@ Routes imports
+import userRouter from "./routes/user.route.js";
+
+//@ Route declaration
+app.use("/api/v1/users", userRouter);
+
+// http://localhost:8000/api/v1/users/...
+
 export { app };

@@ -1,8 +1,10 @@
 //! Wrapper function to not write async and await each time
 //@ Method 1 : Promise based
 // const asyncHandler = (requestHandler) => {
-// (req,res,next)=>{
-// Promise.resolve(requestHandler(req,res,next)).catch((err)=>next(err))}};
+// return (req,res,next)=>{
+// Promise.resolve(requestHandler(req,res,next)).catch((err)=>next(err))
+// }
+// };
 //@ Method 2 : async and await type
 const asyncHandler = (fn) => async (req, res, next) => {
   try {

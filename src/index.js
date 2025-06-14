@@ -1,13 +1,12 @@
 import dotenv from "dotenv";
-
 import { app } from "./app.js";
 import connectDB from "./db/dbConnect.js";
+
+dotenv.config();
+
 const port = process.env.PORT;
 // console.log(`${process.env.MONGODB_URI}`);
 
-dotenv.config({
-  path: "./.env",
-});
 //@ async-await gives a promise
 connectDB()
   .then(() => {
@@ -16,7 +15,7 @@ connectDB()
     });
   })
   .catch((err) => {
-    console.log("MongoDB connection failed!!!");
+    console.log("MongoDB connection failed!!!", err.message);
   });
 
 app.get("/", (req, res) => {
