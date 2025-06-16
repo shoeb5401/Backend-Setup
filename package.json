@@ -4,7 +4,7 @@
   "description": "a backend project for learning ",
   "main": "src/index.js",
   "scripts": {
-    "dev": "nodemon src/index.js",
+    "dev": "nodemon -r dotenv/config src/index.js",
     "start": "node src/index.js"
   },
   "keywords": [
